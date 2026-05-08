@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: mongodb
   namespace: roboshop
-  #these are replicaset labels
+  # these are deployment labels
   labels:
     project: roboshop
     component: mongodb
@@ -12,21 +12,23 @@ metadata:
 
 spec:
   replicas: 1
-  #these labess are used to select pods
+
+  # these labels are used to select pods
   selector:
     matchLabels:
       project: roboshop
       component: mongodb
       tier: db
-  #pod defination
+
+  # pod definition
   template:
     metadata:
       labels:
-      project: roboshop
-      component: mongodb
-      tier: db
+        project: roboshop
+        component: mongodb
+        tier: db
 
     spec:
       containers:
-      - name: nginx
+      - name: mongodb
         image: shaikalthaf1984/mongodb:v1

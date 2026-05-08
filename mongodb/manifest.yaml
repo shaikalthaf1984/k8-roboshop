@@ -4,6 +4,7 @@ kind: Deployment
 metadata:
   name: mongodb
   namespace: roboshop
+
   # these are deployment labels
   labels:
     project: roboshop
@@ -32,3 +33,15 @@ spec:
       containers:
       - name: mongodb
         image: shaikalthaf1984/mongodb:v1
+
+        readinessProbe:
+          tcpSocket:
+            port: 27017
+          initialDelaySeconds: 10
+          periodSeconds: 10
+
+        livenessProbe:
+          tcpSocket:
+            port: 27017
+          initialDelaySeconds: 5
+          periodSeconds: 5

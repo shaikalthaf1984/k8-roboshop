@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: mongodb
-        image: joindevops/mongodb:v1
+        image: shaikalthaf1984/mongodb:v1
 
         readinessProbe:
           tcpSocket:

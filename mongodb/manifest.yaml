@@ -46,21 +46,21 @@ spec:
           initialDelaySeconds: 5
           periodSeconds: 5
 
-# ----------# service
-# apiVersion: v1
-# kind: Service
+#sercice ------
+apiVersion: v1
+kind: Service
 
-# metadata:
-#   name: mongodb
-#   namespace: roboshop
+metadata:
+  name: mongodb
+  namespace: roboshop
 
-# spec:
-#   selector:
-#     project: roboshop
-#     component: mongodb
-#     tier: db
+spec:
+  selector:
+    project: roboshop
+    component: mongodb
+    tier: db
 
-#   ports:
-#     - protocol: TCP
-#       port: 27017
-#       targetPort: 27017
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017

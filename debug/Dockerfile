@@ -1,9 +1,9 @@
-# FROM almalinux:9
+FROM almalinux:9
 
-# RUN dnf install telnet net-tools iputils -y
+RUN dnf install telnet net-tools iputils -y
 
-# RUN useradd roboshop
+RUN useradd roboshop
 
-# USER roboshop
+USER roboshop
 
-# CMD ["sleep", "1000"]
+CMD ["sleep", "1000"]

@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: catalogue
+  namespace: roboshop
+
+  # these are replicaset labels
+  labels:
+    project: roboshop
+    component: catalogue
+    tier: backend
+
+spec:
+  replicas: 1
+
+  # these labels are used to select pods
+  selector:
+    matchLabels:
+      project: roboshop
+      component: catalogue
+      tier: backend
+
+  # pod definition
+  template:
+    metadata:
+      labels:
+        project: roboshop
+        component: catalogue
+        tier: backend
+
+    spec:
+      containers:
+      - name: catalogue
+        image: shaikalthaf1984/catalogue:v1
+
+        ports:
+        - containerPort: 8080
+          name: catalogue-port
+
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: catalogue-port
+          failureThreshold: 1
+          periodSeconds: 5
+
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: catalogue-port
+          failureThreshold: 1
+          periodSeconds: 5
+
+---
+# service
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: catalogue
+  namespace: roboshop
+
+spec:
+  selector:
+    project: roboshop
+    component: catalogue
+    tier: backend
+
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080

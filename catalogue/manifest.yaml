@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: catalogue
-        image: shaikalthaf1984/catalogue:v1
+        image: adilfahin/catalogue:v1
 
         ports:
         - containerPort: 8080
